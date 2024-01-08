@@ -9,7 +9,7 @@ import { mapColors } from "./color";
  */
 export const border = {
   round: (value: number) => css`
-    border-radius: ${value};
+    border-radius: ${value}px;
   `,
   ...mapColors(
     (color) => css`
