@@ -3,6 +3,7 @@ import axios from "axios";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import InfiniteScroll from "react-infinite-scroller";
+import ReactLoading from "react-loading";
 import Select from "react-select";
 import {
   align,
@@ -128,7 +129,15 @@ function Epic1min() {
         </div>
       </div>
       <div
-        css={[w("hug"), h(500), row, justify.center, gap(16), scroll.y]}
+        css={[
+          w("fill"),
+          h(500),
+          row,
+          justify.center,
+          align.center,
+          gap(16),
+          scroll.y,
+        ]}
         style={{ flexWrap: "wrap" }}
       >
         <InfiniteScroll
@@ -144,41 +153,45 @@ function Epic1min() {
           css={[w("hug"), row, justify.center, gap(16)]}
           style={{ flexWrap: "wrap" }}
         >
-          {shownVideos.map((video) => (
-            <a
-              key={video.id}
-              href={`https://www.youtube.com/watch?v=${video.id}`}
-              target="_blank"
-              css={[w(320), h(180)]}
-              style={{
-                position: "relative",
-                textDecoration: "none",
-                color: "inherit",
-                outline: 0,
-              }}
-            >
-              <img
+          {shownVideos.length !== 0 ? (
+            shownVideos.map((video) => (
+              <a
                 key={video.id}
-                width="320"
-                height="180"
-                src={`https://i.ytimg.com/vi/${video.id}/mqdefault.jpg`}
-                css={[border.round(8)]}
-              />
-              <div
-                css={[w("hug"), h("hug"), text.labelS, row, gap(4)]}
-                style={{ position: "absolute", bottom: "4px", right: "4px" }}
+                href={`https://www.youtube.com/watch?v=${video.id}`}
+                target="_blank"
+                css={[w(320), h(180)]}
+                style={{
+                  position: "relative",
+                  textDecoration: "none",
+                  color: "inherit",
+                  outline: 0,
+                }}
               >
-                <Label text={num2str(video.viewCount)} />
-                <Label
-                  text={`${Math.floor(video.duration / 60)}:${(
-                    video.duration % 60
-                  )
-                    .toString()
-                    .padStart(2, "0")}`}
+                <img
+                  key={video.id}
+                  width="320"
+                  height="180"
+                  src={`https://i.ytimg.com/vi/${video.id}/mqdefault.jpg`}
+                  css={[border.round(8)]}
                 />
-              </div>
-            </a>
-          ))}
+                <div
+                  css={[w("hug"), h("hug"), text.labelS, row, gap(4)]}
+                  style={{ position: "absolute", bottom: "4px", right: "4px" }}
+                >
+                  <Label text={num2str(video.viewCount)} />
+                  <Label
+                    text={`${Math.floor(video.duration / 60)}:${(
+                      video.duration % 60
+                    )
+                      .toString()
+                      .padStart(2, "0")}`}
+                  />
+                </div>
+              </a>
+            ))
+          ) : (
+            <ReactLoading type={"spinningBubbles"} color="black" />
+          )}
         </InfiniteScroll>
       </div>
       <div
