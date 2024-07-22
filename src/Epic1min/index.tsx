@@ -21,7 +21,6 @@ import {
   text,
   w,
 } from "../styles";
-import "./index.css";
 
 type Option = {
   label: string;

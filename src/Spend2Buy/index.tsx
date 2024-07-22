@@ -1,10 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { Calculator, Preset } from "./core/calculate";
-import { align, border, center, column, gap, h, row, text, w } from "../styles";
+import {
+  align,
+  border,
+  center,
+  column,
+  gap,
+  h,
+  padding,
+  row,
+  text,
+  w,
+} from "../styles";
 import PresetSelect from "./components/atom/Select";
 import Table from "./components/atom/Table";
-import "./index.css";
+import { Calculator, Preset } from "./core/calculate";
+// import "./index.css";
 
 const debounce = <T extends (...args: any[]) => any>(fn: T, delay: number) => {
   let timeout: ReturnType<typeof setTimeout>;
@@ -47,8 +58,15 @@ function Spend2Buy() {
     }
   }, [preset, value]);
   return (
-    <>
-      <div css={[w("fill"), h("fill"), center, column, gap(8)]}>
+    <div
+      css={[center]}
+      style={{
+        width: "100vw",
+        height: "100vh",
+        textAlign: "center",
+      }}
+    >
+      <div css={[center, column, gap(8)]}>
         <h1>Spend2Buy</h1>
         <div
           css={[row, center, gap(8), text.titleM, w("fill")]}
@@ -58,7 +76,14 @@ function Spend2Buy() {
         >
           <p css={[w("hug")]}>I want to buy at least</p>
           <input
-            css={[h(24), w(80), border.round(8)]}
+            css={[
+              h(38),
+              w(100),
+              padding.horizontal(8),
+              border.gray300,
+              border.round(4),
+              text.bodyL
+            ]}
             ref={inputRef}
             placeholder="123"
             inputMode="numeric"
@@ -86,7 +111,7 @@ function Spend2Buy() {
         <p>To update or add new preset for other game,</p>
         <p>contact me with jeukhwang.dev(at)gmail.com</p>
       </div>
-    </>
+    </div>
   );
 }
 

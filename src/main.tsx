@@ -8,7 +8,7 @@ import router from "./router";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <>
-      <div>
+      <div id="toaster">
         <Toaster position="bottom-center" />
       </div>
       <RouterProvider router={router} />
